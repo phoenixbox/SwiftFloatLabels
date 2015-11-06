@@ -16,7 +16,7 @@ class FlickrSearchViewModel : NSObject {
   
   //MARK: Properties
   
-  dynamic var searchText = ""
+  dynamic var searchText = "Banana"
   dynamic var phoneNumber = ""
   dynamic var previousSearches: [PreviousSearchViewModel]
   var executeSearch: RACCommand?
