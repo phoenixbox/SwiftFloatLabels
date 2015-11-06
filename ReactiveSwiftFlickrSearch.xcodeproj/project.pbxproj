@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		348748721BECBE440027D793 /* ProfileFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348748711BECBE440027D793 /* ProfileFormViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		34E287E81BEB96EF001CCE68 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34E287E71BEB96EF001CCE68 /* Storyboard.storyboard */; settings = {ASSET_TAGS = (); }; };
 		34E287EA1BEB98CD001CCE68 /* CustomCellsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E287E91BEB98CD001CCE68 /* CustomCellsController.swift */; settings = {ASSET_TAGS = (); }; };
 		34E287F21BEBA68F001CCE68 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E287F11BEBA68F001CCE68 /* HomeViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		0E3C9E68A90FC5A36C5BA6B3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		30E1C9CCD35D02A872E3FFC4 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		348748711BECBE440027D793 /* ProfileFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileFormViewController.swift; sourceTree = "<group>"; };
 		34E287E71BEB96EF001CCE68 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = ../Storyboard.storyboard; sourceTree = "<group>"; };
 		34E287E91BEB98CD001CCE68 /* CustomCellsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCellsController.swift; sourceTree = "<group>"; };
 		34E287F11BEBA68F001CCE68 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				3CF973E4197665F5003F00E9 /* RecentSearchItemTableViewCell.swift */,
 				34E287E91BEB98CD001CCE68 /* CustomCellsController.swift */,
 				34E287F11BEBA68F001CCE68 /* HomeViewController.swift */,
+				348748711BECBE440027D793 /* ProfileFormViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				348748721BECBE440027D793 /* ProfileFormViewController.swift in Sources */,
 				3CC6ABF31975065D008F0262 /* FlickrPhoto.swift in Sources */,
 				3C9E38511978FF3C005BFD1A /* SearchResultsItemViewModel.swift in Sources */,
 				3CF973E119766188003F00E9 /* PreviousSearchViewModel.swift in Sources */,

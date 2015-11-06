@@ -13,12 +13,9 @@ import Eureka
 class HomeViewController: UIViewController {
     var viewModel: FlickrSearchViewModel!
     
+    @IBOutlet weak var formContainer: UIView!
     @IBOutlet weak var viewLabel: UILabel!
-//    init(viewModel:FlickrSearchViewModel) {
-//        self.viewModel = viewModel
-//        super.init(nibName: "HomeViewController", bundle: nil)
-////        super.init(nibName: "FlickrSearchViewController", bundle: nil)
-//    }
+    dynamic var profileFormViewController: ProfileFormViewController!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -27,6 +24,16 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier! == "profile_form_embed") {
+          print("Prepare for embed segue")
+//            Expect that sequential operations
+            
+          profileFormViewController = segue.destinationViewController as! ProfileFormViewController
+          profileFormViewController.viewModel = viewModel
+        }
     }
     
     func bindViewModel() {

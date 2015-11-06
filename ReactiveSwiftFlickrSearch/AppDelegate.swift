@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let viewModel = FlickrSearchViewModel(services: viewModelServices)
     controller.viewModel = viewModel
     
-    self.window?.rootViewController = controller
+//    self.window?.rootViewController = controller
 
 //    if let controller = storyboard.instantiateInitialViewController() as? HomeViewController {
 //    }
