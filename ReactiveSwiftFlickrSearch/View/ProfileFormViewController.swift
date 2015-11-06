@@ -27,6 +27,9 @@ class ProfileFormViewController: FormViewController {
             <<< IntRow("IntRow"){ $0.title = "Int"; $0.value = 5 }
             +++ Section("Email Section")
             <<< EmailRow("EmailRow") { $0.title = "Email" }
+            <<< TextFloatLabelRow() {
+                $0.title = "Float Label Row, type something to see.."
+            }
     }
     
     

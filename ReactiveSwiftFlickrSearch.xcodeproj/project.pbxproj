@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		341AE1791BED0DC60096AF33 /* CustomCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341AE1781BED0DC60096AF33 /* CustomCells.swift */; settings = {ASSET_TAGS = (); }; };
 		348748721BECBE440027D793 /* ProfileFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348748711BECBE440027D793 /* ProfileFormViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		34E287E81BEB96EF001CCE68 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34E287E71BEB96EF001CCE68 /* Storyboard.storyboard */; settings = {ASSET_TAGS = (); }; };
-		34E287EA1BEB98CD001CCE68 /* CustomCellsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E287E91BEB98CD001CCE68 /* CustomCellsController.swift */; settings = {ASSET_TAGS = (); }; };
 		34E287F21BEBA68F001CCE68 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E287F11BEBA68F001CCE68 /* HomeViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		3C0E601319758A2B0009D5B2 /* FlickrSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0E601219758A2B0009D5B2 /* FlickrSearchViewController.swift */; };
 		3C0E601E19758F060009D5B2 /* FlickrSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0E601D19758F060009D5B2 /* FlickrSearchViewModel.swift */; };
@@ -44,9 +44,9 @@
 /* Begin PBXFileReference section */
 		0E3C9E68A90FC5A36C5BA6B3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		30E1C9CCD35D02A872E3FFC4 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		341AE1781BED0DC60096AF33 /* CustomCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCells.swift; sourceTree = "<group>"; };
 		348748711BECBE440027D793 /* ProfileFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileFormViewController.swift; sourceTree = "<group>"; };
 		34E287E71BEB96EF001CCE68 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = ../Storyboard.storyboard; sourceTree = "<group>"; };
-		34E287E91BEB98CD001CCE68 /* CustomCellsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCellsController.swift; sourceTree = "<group>"; };
 		34E287F11BEBA68F001CCE68 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		3C0E601219758A2B0009D5B2 /* FlickrSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrSearchViewController.swift; sourceTree = "<group>"; };
 		3C0E601D19758F060009D5B2 /* FlickrSearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlickrSearchViewModel.swift; path = ViewModel/FlickrSearchViewModel.swift; sourceTree = "<group>"; };
@@ -115,7 +115,6 @@
 				3CF973DE19765CFF003F00E9 /* SearchResultsTableViewCell.swift */,
 				3CF973E2197665DE003F00E9 /* RecentSearchItemTableViewCell.xib */,
 				3CF973E4197665F5003F00E9 /* RecentSearchItemTableViewCell.swift */,
-				34E287E91BEB98CD001CCE68 /* CustomCellsController.swift */,
 				34E287F11BEBA68F001CCE68 /* HomeViewController.swift */,
 				348748711BECBE440027D793 /* ProfileFormViewController.swift */,
 			);
@@ -153,6 +152,7 @@
 				3C0E60231975B7160009D5B2 /* RAC.swift */,
 				3C0E60251975BA670009D5B2 /* RACObserve.swift */,
 				3C14972B1975D9BB002548CC /* TableViewBindingHelper.swift */,
+				341AE1781BED0DC60096AF33 /* CustomCells.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -338,13 +338,13 @@
 			files = (
 				348748721BECBE440027D793 /* ProfileFormViewController.swift in Sources */,
 				3CC6ABF31975065D008F0262 /* FlickrPhoto.swift in Sources */,
+				341AE1791BED0DC60096AF33 /* CustomCells.swift in Sources */,
 				3C9E38511978FF3C005BFD1A /* SearchResultsItemViewModel.swift in Sources */,
 				3CF973E119766188003F00E9 /* PreviousSearchViewModel.swift in Sources */,
 				3CC6ABF919750696008F0262 /* RACSignal+Extensions.swift in Sources */,
 				3CF973DF19765CFF003F00E9 /* SearchResultsTableViewCell.swift in Sources */,
 				3CC6ABF41975065D008F0262 /* FlickrSearch.swift in Sources */,
 				3CC6ABF61975065D008F0262 /* FlickrSearchResult.swift in Sources */,
-				34E287EA1BEB98CD001CCE68 /* CustomCellsController.swift in Sources */,
 				3C0E601E19758F060009D5B2 /* FlickrSearchViewModel.swift in Sources */,
 				3C14972C1975D9BB002548CC /* TableViewBindingHelper.swift in Sources */,
 				34E287F21BEBA68F001CCE68 /* HomeViewController.swift in Sources */,

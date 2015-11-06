@@ -38,5 +38,7 @@ class HomeViewController: UIViewController {
     
     func bindViewModel() {
         viewLabel.text = self.viewModel!.searchText
+        
+        
     }
 }

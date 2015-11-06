@@ -9,3 +9,4 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <objectiveflickr/ObjectiveFlickr.h>
+#import <JVFloatLabeledTextField/JVFloatLabeledTextField.h>
