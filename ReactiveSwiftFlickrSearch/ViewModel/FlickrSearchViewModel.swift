@@ -24,12 +24,19 @@ class FlickrSearchViewModel : NSObject {
   var previousSearchSelected: RACCommand!
   var connectionErrors: RACSignal!
   var searchTextSignal: RACSignal!
+  
+  dynamic var emailText = ""
+  var emailSignal: RACSignal!
+    
   var phoneNumberSignal: RACSignal!
   var enabledSearch: RACSignal!
+    
+    
 //  var validationErrors: Dictionary<String, AnyObject>
   var validators: [String: ValidationRulePattern] = [
     "searchText": ValidationRulePattern(pattern: .EmailAddress, failureError: ValidationError(message: "😫")),
-    "phoneNumber": ValidationRulePattern(pattern: "^\\d{10}$", failureError: ValidationError(message: "😫"))
+    "phoneNumber": ValidationRulePattern(pattern: "^\\d{10}$", failureError: ValidationError(message: "😫")),
+    "emailText": ValidationRulePattern(pattern: .EmailAddress, failureError: ValidationError(message: "😫"))
     ]
   
   private let services: ViewModelServices
@@ -53,8 +60,11 @@ class FlickrSearchViewModel : NSObject {
     // Sync ViewModel and Model? - Wrap an async call to server with signal
     // Bind & reduce the execution of that call to a button 
     // On success - find and update the View's ViewModel which contains the model/collection returned from the API based on the response
+    
+    // Signal name - text field name
     searchTextSignal = signalForField("searchText")
     phoneNumberSignal = signalForField("phoneNumber")
+    emailSignal = signalForField("emailText")
     enabledSearch = RACSignal.combineLatest([searchTextSignal, phoneNumberSignal]).map {
         let tuple = $0 as! RACTuple
         let bools = tuple.allObjects() as! [Bool]

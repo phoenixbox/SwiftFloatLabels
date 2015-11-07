@@ -81,8 +81,8 @@ class FlickrSearchViewController: UIViewController {
     private func bindPhoneNumberField() {
         phoneNumberField.rac_textSignal() ~> RAC(viewModel, "phoneNumber")
     }
-
-//    Works!! :) :) :)
+    
+//    Conditional View Updating on Signal Response
     private func textFieldColorValidationWithSignal(signal:RACSignal, textField:UITextField) -> RACSignal {
         return signal.filter({ (_) -> Bool in
             // Make sure we have input and we're still the active textField
@@ -96,10 +96,32 @@ class FlickrSearchViewController: UIViewController {
             self.colorForValidity(object)
         })
     }
+    
+    private func textFieldErroMessageWithSignal(signal:RACSignal, textField:UITextField) -> RACSignal {
+        return signal.filter({ (_) -> Bool in
+            return self.isValidTextField(textField)
+        }).throttle(0.5, valuesPassingTest: { (object) -> Bool in
+            return (object as? Bool) == false
+        }).map({ [unowned self] (object) in
+            self.errorsForValidity(object, textField: textField)
+        })
+    }
+    
+    private func isValidTextField(textField: UITextField) -> Bool {
+        return textField.text!.characters.count > 0 && textField.isFirstResponder()
+    }
+    
     private func colorForValidity(valid : AnyObject!) -> UIColor! {
         return (valid as? Bool) == false ? UIColor.redColor() : UIColor.clearColor()
     }
-
+    
+    private func errorsForValidity(valid : AnyObject!, textField: UITextField) -> String {
+        if ((valid) != nil) {
+            return "Email"
+        } else {
+            return "Please enter a valid email: e.g sarah@example.com"
+        }
+    }
 }
 
 
