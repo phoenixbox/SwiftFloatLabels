@@ -31,24 +31,50 @@ class FlickrSearchViewModel : NSObject {
   var phoneNumberSignal: RACSignal!
   var enabledSearch: RACSignal!
     
+    var validations: Dictionary<String, Validation> = [:]
     
-//  var validationErrors: Dictionary<String, AnyObject>
-  var validators: [String: ValidationRulePattern] = [
-    "searchText": ValidationRulePattern(pattern: .EmailAddress, failureError: ValidationError(message: "😫")),
-    "phoneNumber": ValidationRulePattern(pattern: "^\\d{10}$", failureError: ValidationError(message: "😫")),
-    "emailText": ValidationRulePattern(pattern: .EmailAddress, failureError: ValidationError(message: "😫"))
+    struct Validation {
+        var placeholder:String
+        var success:String
+        var rule:ValidationRulePattern
+    }
+    
+    var validationText:[String: Dictionary<String, String>] = [
+        "emailText": [
+            "placeholder": "Email",
+            "success": "Email is valid!",
+            "error": "Please enter a valid email"
+        ],
+        "searchText": [
+            "placeholder": "",
+            "success": "",
+            "error": ""
+        ],
+        "phoneNumber": [
+            "placeholder": "",
+            "success": "",
+            "error": ""
+        ]
     ]
-  
+    
   private let services: ViewModelServices
   
   //MARK: Public APIprintln
+    
+    func initValidations() {
+        for field in validationText.keys {
+            let validation = Validation(placeholder: validationText[field]!["placeholder"]!, success: validationText[field]!["success"]!, rule: ValidationRulePattern(pattern: .EmailAddress, failureError: ValidationError(message: validationText[field]!["error"]!)))
+            validations[field] = validation
+        }
+    }
   
   init(services: ViewModelServices) {
-    
-    self.services = services
     previousSearches = []
-    
+    self.services = services
     super.init()
+    
+    self.initValidations()
+
     
     // Observer receives the pass from the View
     // searchTextField.rac_textSignal() ~> RAC(viewModel, "searchText")
@@ -91,15 +117,10 @@ class FlickrSearchViewModel : NSObject {
        return RACObserve(self, keyPath: fieldName).mapAs {
             (text: NSString) -> NSNumber in
             let value = text as String
-            
-            if let _ = self.validators[fieldName] as ValidationRulePattern! {
-                let result = value.validate(rule: self.validators[fieldName]! as
-                    ValidationRulePattern)
-                return result.isValid
-            } else {
-                return false
-            }
-            
+        
+            let rule = self.validations[fieldName]!.rule
+            let result = value.validate(rule: rule)
+            return result.isValid
         }.distinctUntilChanged();
     }
   

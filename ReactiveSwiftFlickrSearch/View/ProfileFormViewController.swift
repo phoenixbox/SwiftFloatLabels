@@ -9,6 +9,7 @@
 import UIKit
 import Eureka
 import JVFloatLabeledTextField
+import Validator
 //MARK: Emoji
 
 typealias Emoji = String
@@ -33,10 +34,11 @@ class ProfileFormViewController: FormViewController {
     
     private func bindEmailField() {
         let labelTextField = self.emailField.cell.textField as! JVFloatLabeledTextField
-
-        labelTextField.rac_textSignal() ~> RAC(viewModel, "emailText")
         
         let contentSignal = labelTextField.rac_textSignal()
+        // Passive signal - triggers ViewModel observer validation observer
+        labelTextField.rac_textSignal() ~> RAC(viewModel, "emailText")
+
         let validEmailSignal = textFieldErroMessageWithSignal(viewModel.emailSignal, textField: labelTextField)
         let combinedTitleSignal = RACSignal.combineLatest([contentSignal, validEmailSignal]).map {
             let tuple = $0 as! RACTuple
@@ -45,9 +47,10 @@ class ProfileFormViewController: FormViewController {
             if (currentText.characters.count > 0) {
                 return tuple.second as! String
             } else {
-                return "Email"
+                return self.viewModel.validations["emailText"]!.placeholder
             }
         }
+        // Restart: make the form values use a configuration object
         combinedTitleSignal.subscribeNextAs {
             (title: String) -> () in
             print("\(title)")
@@ -75,9 +78,10 @@ class ProfileFormViewController: FormViewController {
 //        Instead of passing a bool could pass a Validator object?
 
         if (valid as! Bool) {
-            return "Placeholder"
+            return viewModel.validations["emailText"]!.success
         } else {
-            return "Please enter a valid email: e.g sarah@example.com"
+            let rule = viewModel.validations["emailText"]!.rule
+            return rule.failureError.message
         }
     }
     
