@@ -31,14 +31,17 @@ class FlickrSearchViewModel : NSObject {
   var phoneNumberSignal: RACSignal!
   var enabledSearch: RACSignal!
     
-    var validations: Dictionary<String, Validation> = [:]
+    var fieldNames: Array<String> = []
     
+    // Validation struct object
     struct Validation {
         var placeholder:String
         var success:String
         var rule:ValidationRulePattern
     }
-    
+
+    // Validation configuration object
+    var validations: Dictionary<String, Validation> = [:]
     var validationText:[String: Dictionary<String, String>] = [
         "emailText": [
             "placeholder": "Email",
@@ -67,10 +70,13 @@ class FlickrSearchViewModel : NSObject {
             validations[field] = validation
         }
     }
-  
+    
   init(services: ViewModelServices) {
     previousSearches = []
+    fieldNames = Array(validationText.keys)
+    
     self.services = services
+    
     super.init()
     
     self.initValidations()

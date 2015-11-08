@@ -21,6 +21,11 @@ class ProfileFormViewController: FormViewController {
     var viewModel: FlickrSearchViewModel!
     var emailField: FloatFieldRow <String, EmailFloatLabelCell>!
     
+    struct ValidationFormat {
+        var title:String
+        var color:UIColor
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Form creation")
@@ -45,16 +50,25 @@ class ProfileFormViewController: FormViewController {
             let currentText = tuple.first as! String
             
             if (currentText.characters.count > 0) {
-                return tuple.second as! String
+//                return tuple.second["title"] as! String
+                return tuple.second
             } else {
-                return self.viewModel.validations["emailText"]!.placeholder
+                return [
+                    "title": self.viewModel.validations["emailText"]!.placeholder,
+                    "color": UIColor.orangeColor()
+                ]
             }
         }
-        // Restart: make the form values use a configuration object
-        combinedTitleSignal.subscribeNextAs {
-            (title: String) -> () in
-            print("\(title)")
-            self.emailField.title = title
+
+        combinedTitleSignal.subscribeNext {
+            (validation: AnyObject!) -> () in
+            let formatter = validation as! Dictionary<String, NSObject>
+
+            self.emailField.title = (formatter["title"] as! String)
+            let labelTextField = self.emailField.cell.textField as! JVFloatLabeledTextField
+            labelTextField.floatingLabel.textColor = formatter["color"] as! UIColor
+            labelTextField.floatingLabelActiveTextColor = (formatter["color"] as! UIColor)
+            
             self.emailField.updateCell()
         }
     }
@@ -73,15 +87,23 @@ class ProfileFormViewController: FormViewController {
         return textField.text!.characters.count > 0 && textField.isFirstResponder()
     }
     
-    private func errorsForValidity(valid : AnyObject!, textField: UITextField) -> String! {
+    private func errorsForValidity(valid : AnyObject!, textField: UITextField) -> Dictionary<String, NSObject>! {
+        // return onject which color and text can be picked off
+        
 //        Composed would look up by tag and then key into a validation object to get error message
 //        Instead of passing a bool could pass a Validator object?
 
-        if (valid as! Bool) {
-            return viewModel.validations["emailText"]!.success
-        } else {
-            let rule = viewModel.validations["emailText"]!.rule
-            return rule.failureError.message
+        if (valid as! Bool) { // success
+            return [
+                "title": viewModel.validations["emailText"]!.success,
+                "color": UIColor.greenColor() 
+            ]
+        } else { // failure
+            let rule = viewModel.validations["emailText"]!.rule as ValidationRulePattern
+            return [
+                "title": rule.failureError.message,
+                "color": UIColor.redColor()
+            ]
         }
     }
     
