@@ -9,12 +9,12 @@
 import Foundation
 
 // Represents the result of a Flickr search
-class FlickrSearchResults {
+class SearchResults {
   let searchString: String
   let totalResults: Int
-  let photos: [FlickrPhoto]
+  let photos: [Photo]
   
-  init(searchString: String, totalResults: Int, photos: [FlickrPhoto]) {
+  init(searchString: String, totalResults: Int, photos: [Photo]) {
     self.searchString = searchString;
     self.totalResults = totalResults
     self.photos = photos

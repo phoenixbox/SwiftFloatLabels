@@ -9,7 +9,7 @@
 import Foundation
 
 // represents a single photo in a Flickr search
-class FlickrPhoto {
+class Photo {
 
   let title :String
   let url :NSURL

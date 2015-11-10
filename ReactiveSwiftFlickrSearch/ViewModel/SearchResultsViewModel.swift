@@ -17,7 +17,7 @@ class SearchResultsViewModel: NSObject {
   private let services: ViewModelServices
   private let searchStore: FlickrSearchStore
   
-  init(services: ViewModelServices, searchResults: FlickrSearchResults) {
+  init(services: ViewModelServices, searchResults: SearchResults) {
     self.services = services
     self.searchStore = FlickrSearchStore.sharedInstance
     self.title = searchResults.searchString

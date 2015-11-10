@@ -134,14 +134,14 @@ class FlickrSearchViewModel : NSObject {
   
   private func executeSearchSignal() -> RACSignal {
     return self.searchStore.flickrSearchSignal(searchText).doNextAs {
-      (results: FlickrSearchResults) -> () in
+      (results: SearchResults) -> () in
       let viewModel = SearchResultsViewModel(services: self.services, searchResults: results)
       self.services.pushViewModel(viewModel)
       self.addToSearchHistory(results)
     }
   }
   
-  private func addToSearchHistory(result: FlickrSearchResults) {
+  private func addToSearchHistory(result: SearchResults) {
     let matches = previousSearches.filter { $0.searchString == self.searchText }
     
     var previousSearchesUpdated = previousSearches
