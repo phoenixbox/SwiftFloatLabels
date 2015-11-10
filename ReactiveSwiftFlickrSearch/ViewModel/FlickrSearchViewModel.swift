@@ -24,6 +24,8 @@ class FlickrSearchViewModel : NSObject {
   var previousSearchSelected: RACCommand!
   var connectionErrors: RACSignal!
   var searchTextSignal: RACSignal!
+  // Should be a `Store`
+  let flickrSearchService: FlickrSearch
   
   dynamic var emailText = ""
   var emailSignal: RACSignal!
@@ -74,7 +76,7 @@ class FlickrSearchViewModel : NSObject {
   init(services: ViewModelServices) {
     previousSearches = []
     fieldNames = Array(validationText.keys)
-    
+    self.flickrSearchService = FlickrSearch()
     self.services = services
     
     super.init()
@@ -131,7 +133,7 @@ class FlickrSearchViewModel : NSObject {
     }
   
   private func executeSearchSignal() -> RACSignal {
-    return services.flickrSearchService.flickrSearchSignal(searchText).doNextAs {
+    return self.flickrSearchService.flickrSearchSignal(searchText).doNextAs {
       (results: FlickrSearchResults) -> () in
       let viewModel = SearchResultsViewModel(services: self.services, searchResults: results)
       self.services.pushViewModel(viewModel)

@@ -19,9 +19,13 @@ class SearchResultsItemViewModel: NSObject {
   var identifier: String
   
   private let services: ViewModelServices
+  private let flickrSearchService: FlickrSearch
   
   init(photo: FlickrPhoto, services: ViewModelServices) {
+    // Should be shared singletons
     self.services = services
+    self.flickrSearchService = FlickrSearch()
+    
     title = photo.title
     url = photo.url
     identifier = photo.identifier
@@ -43,13 +47,11 @@ class SearchResultsItemViewModel: NSObject {
 
     fetchMetadata.subscribeNext {
       (next: AnyObject!) -> () in
-      self.services.flickrSearchService.flickrImageMetadata(self.identifier).subscribeNextAs {
+      self.flickrSearchService.flickrImageMetadata(self.identifier).subscribeNextAs {
         (metadata: FlickrPhotoMetadata) -> () in
         self.favourites = metadata.favourites
         self.comments = metadata.comments
       }
     }
-    
   }
-  
 }

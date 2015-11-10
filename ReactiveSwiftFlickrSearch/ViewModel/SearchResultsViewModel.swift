@@ -15,9 +15,11 @@ class SearchResultsViewModel: NSObject {
   let title: String
   
   private let services: ViewModelServices
+  private let flickrSearchService: FlickrSearch
   
   init(services: ViewModelServices, searchResults: FlickrSearchResults) {
     self.services = services
+    self.flickrSearchService = FlickrSearch()
     self.title = searchResults.searchString
     self.searchResults = searchResults.photos.map { SearchResultsItemViewModel(photo: $0, services: services ) }
     

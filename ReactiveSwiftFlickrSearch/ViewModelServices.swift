@@ -8,14 +8,18 @@
 
 import Foundation
 
-class ViewModelServicesImpl: ViewModelServices {
+// provides common services to view models
+protocol ViewModelAPI {
+    func pushViewModel(viewModel:AnyObject)
+}
+
+class ViewModelServices: ViewModelAPI {
   
   private let navigationController: UINavigationController
-  let flickrSearchService: FlickrSearch
+
   
   init(navigationController: UINavigationController) {
     self.navigationController = navigationController
-    self.flickrSearchService = FlickrSearchImpl()
   }
   
   func pushViewModel(viewModel:AnyObject) {

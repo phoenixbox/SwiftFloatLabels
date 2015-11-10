@@ -57,7 +57,6 @@ class FlickrSearchViewController: UIViewController {
     
     private func bindTableView() {
         bindingHelper = TableViewBindingHelper(tableView: searchHistoryTable, sourceSignal: RACObserve(viewModel, keyPath: "previousSearches"), nibName: "RecentSearchItemTableViewCell", selectionCommand: viewModel.previousSearchSelected)
-
     }
     
     private func bindActivityIndicators() {

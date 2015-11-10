@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    let storyboard = UIStoryboard(name: "Storyboard", bundle: nil)
     let navController = self.window?.rootViewController as! UINavigationController
     let controller:HomeViewController = navController.childViewControllers.first as! HomeViewController
-    let viewModelServices = ViewModelServicesImpl(navigationController: navController)
+    let viewModelServices = ViewModelServices(navigationController: navController)
     let viewModel = FlickrSearchViewModel(services: viewModelServices)
     controller.viewModel = viewModel
     
